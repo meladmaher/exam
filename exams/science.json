@@ -1,0 +1,24 @@
+
+{
+    "id": "science_intro",
+    "title": { "ar": "مقدمة في العلوم", "en": "Intro to Science" },
+    "questions": [
+        {
+            "id": "s1",
+            "type": "fill-in-the-blank",
+            "questionText": { "ar": "ما هو الكوكب الأحمر في مجموعتنا الشمسية؟", "en": "Which planet is known as the Red Planet?" },
+            "correctAnswer": "المريخ"
+        },
+        {
+            "id": "s2",
+            "type": "multiple-choice",
+            "questionText": { "ar": "ما هو رمز الماء الكيميائي؟", "en": "What is the chemical symbol for water?" },
+            "options": [
+                { "ar": "CO2", "en": "CO2" },
+                { "ar": "H2O", "en": "H2O" },
+                { "ar": "O2", "en": "O2" }
+            ],
+            "correctAnswer": 1
+        }
+    ]
+}
