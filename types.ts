@@ -8,7 +8,7 @@ export interface Question {
   options?: { ar: string; en: string }[];
   correctAnswer: string;
   explanation?: { ar: string; en: string };
-  subjectId?: string; // Added for starred exam reference
+  subjectId?: string;
 }
 
 export interface Exam {
@@ -16,6 +16,8 @@ export interface Exam {
   subjectId: string;
   title: { ar: string; en: string };
   questions: Question[];
+  thumbnail?: string;
+  active: boolean;
 }
 
 export interface Subject {
@@ -23,6 +25,23 @@ export interface Subject {
   name: { ar: string; en: string };
   icon: string;
   color: string;
+  custom?: boolean;
+}
+
+export interface SavedFolder {
+  id: string;
+  name: string;
+  icon: string;
+  questions: Question[];
+  isDefault?: boolean;
+}
+
+export interface ExamSession {
+  exam: Exam;
+  currentIndex: number;
+  userAnswers: Record<string, string>;
+  feedback: Record<string, { isCorrect: boolean, isChecked: boolean }>;
+  startTime: number;
 }
 
 export interface UserStats {
@@ -30,11 +49,15 @@ export interface UserStats {
   accuracyRate: number;
   totalQuestionsAnswered: number;
   correctAnswers: number;
-  starredQuestionIds: string[]; // List of IDs for starred questions
-  subjectProgress: Record<string, {
-    examsCount: number;
-    accuracy: number;
-    lastScore: number;
+  starredQuestionIds: string[];
+  history: {
+    subjectId: string;
+    score: number;
+    date: number;
+  }[];
+  mistakesTracker: Record<string, {
+    count: number;
+    question: Question;
   }>;
 }
 
@@ -43,11 +66,11 @@ export interface ExamResult {
   subjectId: string;
   score: number;
   timeSpent: number;
-  date: number; // Timestamp
+  date: number;
   answers: {
     questionId: string;
+    questionData: Question;
     userAnswer: string;
     isCorrect: boolean;
-    similarityScore?: number;
   }[];
 }

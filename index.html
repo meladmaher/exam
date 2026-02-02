@@ -12,11 +12,13 @@
         theme: {
           extend: {
             colors: {
-              indigo: {
-                50: '#eef2ff', 100: '#e0e7ff', 200: '#c7d2fe', 300: '#a5b4fc',
-                400: '#818cf8', 500: '#6366f1', 600: '#4f46e5', 700: '#4338ca',
-                800: '#3730a3', 900: '#312e81', 950: '#1e1b4b',
-              },
+              primary: 'var(--color-primary)',
+              'primary-hover': 'var(--color-primary-hover)',
+              secondary: 'var(--color-secondary)',
+            },
+            borderRadius: {
+              'xl-custom': '2rem',
+              '2xl-custom': '3rem',
             }
           }
         }
@@ -41,7 +43,6 @@
 </head>
 <body class="bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-slate-100 transition-colors duration-500 min-h-screen font-['IBM_Plex_Sans_Arabic','Inter',sans-serif]">
     <div id="root"></div>
-    <!-- تم حذف main.js لمنع أخطاء الـ Null وتضارب الـ DOM -->
     <script type="module" src="index.tsx"></script>
 <script type="module" src="/index.tsx"></script>
 </body>
