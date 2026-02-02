@@ -4,21 +4,24 @@ import { GoogleGenAI, Type } from "@google/genai";
 export const aiService = {
   /**
    * Checks similarity between user answer and correct answer using Gemini.
-   * Optimized for Arabic linguistic nuances.
+   * Optimized to ignore Arabic spelling mistakes and accept synonyms.
    */
   checkSemanticSimilarity: async (userAnswer: string, correctAnswer: string): Promise<number> => {
     try {
+      // Create instance right before API call to ensure current API Key is used
       const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+      
       const prompt = `
-        قم بمقارنة الجملتين التاليتين من حيث المعنى (Semantic Similarity) باللغة العربية.
-        إجابة المستخدم: "${userAnswer}"
-        الإجابة الصحيحة النموذجية: "${correctAnswer}"
+        بصفتك مصححاً ذكياً، قارن بين إجابة الطالب والإجابة النموذجية باللغة العربية.
+        إجابة الطالب: "${userAnswer}"
+        الإجابة النموذجية: "${correctAnswer}"
         
-        قواعد التقييم:
-        1. تجاهل التشكيل والهمزات (أ، إ، آ، ا) والتاء المربوطة (ة، هـ).
-        2. إذا كانت الإجابة تعطي نفس المعنى المقصود حتى لو بكلمات مختلفة، أعطِ درجة عالية.
-        3. تجاهل الأخطاء الإملائية البسيطة التي لا تغير المعنى.
-        4. أرجع النتيجة ككائن JSON فقط يحتوي على حقل 'score' بقيمة من 0 إلى 100.
+        قواعد التصحيح:
+        1. تغاضى تماماً عن الأخطاء الإملائية الشائعة (مثل: هـ بدل ة، ي بدل ى، أ/إ/ا بدل ا).
+        2. اقبل المترادفات التي تعطي نفس المعنى الجوهري.
+        3. تجاهل (ال) التعريف أو المسافات الزائدة.
+        4. إذا كان المعنى صحيحاً بنسبة 80% فأكثر، أعطِ درجة 100.
+        5. أرجع النتيجة بتنسيق JSON فقط: {"score": 0-100}.
       `;
 
       const response = await ai.models.generateContent({
@@ -36,11 +39,15 @@ export const aiService = {
         }
       });
 
-      const result = JSON.parse(response.text || '{"score": 0}');
+      const jsonStr = response.text || '{"score": 0}';
+      const result = JSON.parse(jsonStr);
+      
       return result.score || 0;
     } catch (error) {
-      console.error("AI Check failed:", error);
-      return userAnswer.trim().toLowerCase() === correctAnswer.trim().toLowerCase() ? 100 : 0;
+      console.error("AI Check failed, using fallback:", error);
+      // Fallback normalization logic
+      const normalize = (s: string) => s.replace(/[أإآ]/g, 'ا').replace(/ة/g, 'ه').replace(/ى/g, 'ي').replace(/\s/g, '').toLowerCase();
+      return normalize(userAnswer) === normalize(correctAnswer) ? 100 : 0;
     }
   }
 };
