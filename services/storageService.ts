@@ -1,6 +1,6 @@
 
 import { UserStats, ExamResult, Question, Subject, Exam, SavedFolder, ExamSession } from '../types';
-import { SUBJECTS as DEFAULT_SUBJECTS, ENTREPRENEURSHIP_EXAM } from '../constants';
+import { ETHICS_EXAM } from '../constants';
 
 const STATS_KEY = 'ai_exam_user_stats_v2';
 const RESULTS_KEY = 'ai_exam_results_v2';
@@ -22,7 +22,7 @@ export const storageService = {
   getCustomExams: (): Exam[] => {
     const saved = localStorage.getItem(CUSTOM_EXAMS_KEY);
     const exams = saved ? JSON.parse(saved) : [];
-    return exams.length === 0 ? [ENTREPRENEURSHIP_EXAM] : exams;
+    return exams.length === 0 ? [ETHICS_EXAM] : exams;
   },
 
   addExam: (exam: Exam) => {
@@ -45,7 +45,6 @@ export const storageService = {
     localStorage.setItem(CUSTOM_EXAMS_KEY, JSON.stringify(exams));
   },
 
-  // --- Session Management ---
   saveSession: (session: ExamSession) => {
     localStorage.setItem(SESSION_KEY, JSON.stringify(session));
   },
@@ -59,7 +58,6 @@ export const storageService = {
     localStorage.removeItem(SESSION_KEY);
   },
 
-  // --- Folders ---
   getSavedFolders: (): SavedFolder[] => {
     const saved = localStorage.getItem(FOLDERS_KEY);
     let folders: SavedFolder[] = saved ? JSON.parse(saved) : [];
@@ -103,7 +101,6 @@ export const storageService = {
     }
   },
 
-  // --- Stats ---
   getStats: (): UserStats => {
     const saved = localStorage.getItem(STATS_KEY);
     if (saved) return JSON.parse(saved);
@@ -127,14 +124,12 @@ export const storageService = {
     stats.correctAnswers += result.answers.filter(a => a.isCorrect).length;
     stats.accuracyRate = Math.round((stats.correctAnswers / stats.totalQuestionsAnswered) * 100);
     
-    // Add to history
     stats.history.push({
       subjectId: result.subjectId,
       score: result.score,
       date
     });
 
-    // Track mistakes
     result.answers.forEach(ans => {
       if (!ans.isCorrect) {
         if (!stats.mistakesTracker[ans.questionId]) {
