@@ -88,7 +88,7 @@ export const ETHICS_EXAM: Exam = {
     // --- (3) 21 Fill-in-the-Blank Questions ---
     { id: 'q72', type: 'fill-in-the-blank', questionText: { ar: '........ هي مجموعة من القواعد والأصول المتعارف عليها بين أصحاب المهنة.', en: 'F-1' }, correctAnswer: 'أخلاقيات المهنة' },
     { id: 'q73', type: 'fill-in-the-blank', questionText: { ar: 'النظرية الفطرية ترى أن الأخلاق ........ وثابتة، بينما النظرية الاكتسابية ترى أنها ........ من خلال التربية والتعليم والتجارب.', en: 'F-2' }, correctAnswer: 'فطرية، مكتسبة' },
-    { id: 'q74', type: 'fill-in-the-blank', questionText: { ar: 'الشروط اللازمة في الفعل الخلقي أن يصدر ........ وبإرادة ........ حرة.', en: 'F-3' }, correctAnswer: 'بتكرار، إرادة' },
+    { id: 'q74', type: 'fill-in-the-blank', questionText: { ar: 'الشروط اللازمة في الفعل الخلقي أن يصدر ........ ، ........ حرة.', en: 'F-3' }, correctAnswer: 'بتكرار، إرادة' },
     { id: 'q75', type: 'fill-in-the-blank', questionText: { ar: 'المهنة تتمتع بوضع ........ و ........ أعلى من الوظيفة.', en: 'F-4' }, correctAnswer: 'اجتماعي، اقتصادي' },
     { id: 'q76', type: 'fill-in-the-blank', questionText: { ar: 'من مبادئ أخلاقيات المهنة ........ و ........', en: 'F-5' }, correctAnswer: 'المعاملة الحسنة، الاستقامة' },
     { id: 'q77', type: 'fill-in-the-blank', questionText: { ar: 'من مصادر أخلاقيات المهنة المصدر ........ و ........ و ........', en: 'F-6' }, correctAnswer: 'الديني، الاجتماعي، السياسي' },
