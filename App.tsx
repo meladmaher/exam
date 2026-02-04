@@ -11,6 +11,31 @@ const hexToRgb = (hex: string) => {
   return result ? `${parseInt(result[1], 16)}, ${parseInt(result[2], 16)}, ${parseInt(result[3], 16)}` : '99, 102, 241';
 };
 
+// --- Sub-Component: Resume Session Modal ---
+const ResumeSessionModal: React.FC<{ 
+  lang: 'ar'|'en', 
+  onRestart: () => void, 
+  onResume: () => void 
+}> = ({ lang, onRestart, onResume }) => {
+  return (
+    <div className="fixed inset-0 bg-slate-900/80 backdrop-blur-xl z-[3000] flex items-center justify-center p-4 animate-fade-in text-center">
+      <div className="bg-white dark:bg-slate-900 w-full max-w-md rounded-[2.5rem] p-8 sm:p-12 shadow-2xl border-4 border-primary">
+        <div className="text-6xl mb-6 animate-bounce">⏳</div>
+        <h3 className="text-2xl sm:text-3xl font-black mb-4">وجدنا جلسة سابقة!</h3>
+        <p className="text-slate-500 dark:text-slate-400 font-bold mb-8 leading-relaxed">
+          {lang === 'ar' 
+            ? 'يبدو أنك غادرت الاختبار قبل إنهاءه. هل تود الإكمال من حيث توقفت أم البدء من جديد؟' 
+            : 'We found a previous session. Would you like to resume or start over?'}
+        </p>
+        <div className="space-y-4">
+          <button onClick={onResume} className="w-full py-5 bg-primary text-white rounded-2xl font-black text-xl shadow-xl hover:scale-105 transition-all">إكمال المحاولة</button>
+          <button onClick={onRestart} className="w-full py-4 text-slate-400 font-bold hover:text-red-500 transition-colors">بدء اختبار جديد</button>
+        </div>
+      </div>
+    </div>
+  );
+};
+
 // --- Sub-Component: Folder Creation Modal ---
 const CreateFolderModal: React.FC<{ 
   lang: 'ar'|'en', 
@@ -249,11 +274,36 @@ const SavedQuestionsView: React.FC<{ lang: 'ar'|'en', onStartPractice: (exam: Ex
             </div>
             <button disabled={activeFolder.questions.length === 0} onClick={() => onStartPractice({ id: 'pr_'+activeFolder.id, subjectId: 'practice', title: { ar: 'مراجعة: ' + activeFolder.name, en: 'Review' }, questions: activeFolder.questions, active: true, thumbnail: activeFolder.icon })} className="w-full sm:w-auto px-10 sm:px-12 py-4 sm:py-5 bg-primary text-white rounded-2xl sm:rounded-[2rem] font-black text-lg sm:text-xl shadow-2xl hover:scale-105 transition-all disabled:opacity-30">🚀 ابدأ التدريب</button>
           </div>
-          <div className="space-y-4 sm:space-y-6">
+          <div className="grid grid-cols-1 gap-6">
             {activeFolder.questions.map(q => (
-              <div key={q.id} className="modern-card p-5 sm:p-8 flex justify-between items-center group shadow-sm hover:border-primary transition-all">
-                <p className="font-bold text-lg sm:text-2xl flex-1 truncate text-slate-800 dark:text-white text-start">{q.questionText[lang]}</p>
-                <button onClick={() => { storageService.removeQuestionFromFolder(q.id, activeFolder.id); setActiveFolder({...activeFolder, questions: activeFolder.questions.filter(quest => quest.id !== q.id)}); refresh(); }} className="w-10 h-10 sm:w-14 sm:h-14 bg-red-50 text-red-400 hover:bg-red-500 hover:text-white rounded-xl sm:rounded-2xl ml-4 sm:ml-6 flex items-center justify-center transition-all shrink-0">✕</button>
+              <div key={q.id} className="modern-card p-6 sm:p-8 flex flex-col gap-4 shadow-sm hover:border-primary transition-all relative">
+                <div className="flex justify-between items-start">
+                  <div className="flex-1">
+                    <span className="text-[10px] font-black text-primary bg-indigo-50 px-2 py-1 rounded-md mb-2 inline-block uppercase tracking-widest">
+                      {q.type === 'multiple-choice' ? 'اختياري' : q.type === 'true-false' ? 'صح/خطأ' : 'مقالي'}
+                    </span>
+                    <h4 className="text-lg sm:text-2xl font-black text-slate-800 dark:text-white leading-relaxed text-start">{q.questionText[lang]}</h4>
+                  </div>
+                  <button onClick={() => { storageService.removeQuestionFromFolder(q.id, activeFolder.id); setActiveFolder({...activeFolder, questions: activeFolder.questions.filter(quest => quest.id !== q.id)}); refresh(); }} className="w-10 h-10 bg-red-50 text-red-400 hover:bg-red-500 hover:text-white rounded-xl flex items-center justify-center transition-all shrink-0">✕</button>
+                </div>
+                
+                <div className="mt-2 p-4 sm:p-6 bg-slate-50 dark:bg-slate-800/50 rounded-2xl border border-slate-100 dark:border-slate-800">
+                  <p className="text-xs font-black text-slate-400 mb-2 uppercase tracking-widest">الإجابة الصحيحة:</p>
+                  <p className="text-lg sm:text-xl font-black text-primary">
+                    {q.type === 'fill-in-the-blank' 
+                      ? q.correctAnswer 
+                      : q.options?.[Number(q.correctAnswer)]?.[lang]}
+                  </p>
+                  {q.type !== 'fill-in-the-blank' && q.options && (
+                    <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-2">
+                      {q.options.map((opt, idx) => (
+                        <div key={idx} className={`p-2 px-4 rounded-lg text-sm font-bold border ${idx === Number(q.correctAnswer) ? 'bg-green-50 border-green-200 text-green-700' : 'bg-white dark:bg-slate-900 border-slate-100 dark:border-slate-800 text-slate-400'}`}>
+                          {String.fromCharCode(65 + idx)}) {opt[lang]}
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
               </div>
             ))}
           </div>
@@ -318,6 +368,7 @@ const App: React.FC = () => {
   const [isAdmin, setIsAdmin] = useState(false);
   const [showLogin, setShowLogin] = useState(false);
   const [customExams, setCustomExams] = useState<Exam[]>(storageService.getCustomExams());
+  const [pendingSession, setPendingSession] = useState<ExamSession | null>(null);
 
   useEffect(() => {
     const config = storageService.getThemeConfig();
@@ -333,13 +384,46 @@ const App: React.FC = () => {
     localStorage.setItem('theme', theme);
   }, [theme]);
 
+  // Check for active sessions on mount
+  useEffect(() => {
+    const session = storageService.getActiveSession();
+    if (session) {
+      setPendingSession(session);
+    }
+  }, []);
+
   const handleStartExam = (exam: Exam) => {
+    const existing = storageService.getActiveSession();
+    if (existing && existing.exam.id === exam.id) {
+       setPendingSession(existing);
+       return;
+    }
     setActiveExam(exam);
     setActiveView('exam');
   };
 
+  const handleResume = () => {
+    if (pendingSession) {
+      setActiveExam(pendingSession.exam);
+      setActiveView('exam');
+      setPendingSession(null);
+    }
+  };
+
+  const handleRestart = () => {
+    if (pendingSession) {
+      storageService.clearSession();
+      setActiveExam(pendingSession.exam);
+      setActiveView('exam');
+      setPendingSession(null);
+    }
+  };
+
   return (
     <div className="flex flex-col min-h-screen bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 transition-colors duration-500 font-['IBM_Plex_Sans_Arabic',sans-serif]">
+      {/* Resume Prompt Modal */}
+      {pendingSession && <ResumeSessionModal lang={lang} onResume={handleResume} onRestart={handleRestart} />}
+      
       {/* Navbar */}
       <nav className="sticky top-0 z-50 bg-white/70 dark:bg-slate-950/70 backdrop-blur-xl border-b border-slate-200 dark:border-slate-800 px-4 sm:px-6 py-3 sm:py-4 flex justify-between items-center shadow-sm">
         <div className="flex items-center gap-2 sm:gap-3 cursor-pointer group" onClick={() => setActiveView('home')}>
@@ -382,7 +466,7 @@ const App: React.FC = () => {
             exam={activeExam} 
             lang={lang} 
             onFinish={(res) => { storageService.saveResult(res); setLastResult({...res, date: Date.now()}); storageService.clearSession(); setActiveView('results'); }} 
-            onCancel={() => { if(confirm('إنهاء الاختبار؟')) setActiveView('home'); }} 
+            onCancel={() => { if(confirm('إنهاء الاختبار؟')) { storageService.clearSession(); setActiveView('home'); } }} 
           />
         )}
 
