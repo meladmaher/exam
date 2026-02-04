@@ -62,7 +62,7 @@ export const storageService = {
     const saved = localStorage.getItem(FOLDERS_KEY);
     let folders: SavedFolder[] = saved ? JSON.parse(saved) : [];
     if (!folders.some(f => f.isDefault)) {
-      folders.unshift({ id: 'default_review', name: 'المراجعة', icon: '📚', questions: [], isDefault: true });
+      folders.unshift({ id: 'default_review', name: 'المراجعة العامة', icon: '📚', questions: [], isDefault: true });
       localStorage.setItem(FOLDERS_KEY, JSON.stringify(folders));
     }
     return folders;
@@ -119,21 +119,31 @@ export const storageService = {
     const stats = storageService.getStats();
     const date = Date.now();
     
+    // Update global counts
     stats.examsTaken += 1;
     stats.totalQuestionsAnswered += result.answers.length;
-    stats.correctAnswers += result.answers.filter(a => a.isCorrect).length;
+    
+    const correctInThisExam = result.answers.filter(a => a.isCorrect).length;
+    stats.correctAnswers += correctInThisExam;
+    
+    // Calculate overall accuracy
     stats.accuracyRate = Math.round((stats.correctAnswers / stats.totalQuestionsAnswered) * 100);
     
+    // Track History
     stats.history.push({
       subjectId: result.subjectId,
       score: result.score,
       date
     });
 
+    // Track Mistakes
     result.answers.forEach(ans => {
       if (!ans.isCorrect) {
         if (!stats.mistakesTracker[ans.questionId]) {
-          stats.mistakesTracker[ans.questionId] = { count: 1, question: ans.questionData };
+          stats.mistakesTracker[ans.questionId] = { 
+            count: 1, 
+            question: ans.questionData 
+          };
         } else {
           stats.mistakesTracker[ans.questionId].count += 1;
         }
