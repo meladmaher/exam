@@ -521,8 +521,9 @@ const ExamPlayer: React.FC<{ exam: Exam, lang: 'ar'|'en', onFinish: (res: any) =
   const validate = async (val: string) => {
     if (session.feedback[q.id]?.isChecked || !val.trim()) return;
     setIsChecking(true);
+    // Threshold updated to 70% as requested for fairer local smart grading
     let isCorrect = q.type === 'fill-in-the-blank' 
-      ? (await aiService.checkSemanticSimilarity(val, q.correctAnswer)) >= 75 
+      ? (await aiService.checkSemanticSimilarity(val, q.correctAnswer)) >= 70 
       : String(val) === String(q.correctAnswer);
     
     setSession(prev => ({

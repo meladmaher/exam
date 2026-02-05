@@ -84,54 +84,46 @@ export const ETHICS_EXAM: Exam = {
     { id: 'q69', type: 'true-false', questionText: { ar: 'القوانيين وحدها كافية لضبط السلوك المهني.', en: 'Statement 33' }, options: [{ ar: 'صح', en: 'True' }, { ar: 'خطأ', en: 'False' }], correctAnswer: '1' },
     { id: 'q70', type: 'true-false', questionText: { ar: 'يمكن اكتساب الأخلاق المهنية بالتدريب والممارسة.', en: 'Statement 34' }, options: [{ ar: 'صح', en: 'True' }, { ar: 'خطأ', en: 'False' }], correctAnswer: '0' },
     { id: 'q71', type: 'true-false', questionText: { ar: 'الاعتداء اللفظي على الطلاب مخالفة أخلاقية وجنائية.', en: 'Statement 35' }, options: [{ ar: 'صح', en: 'True' }, { ar: 'خطأ', en: 'False' }], correctAnswer: '0' },
+    // (MCQ/TF portion kept identical)
+  ]
+};
 
-    // --- (3) 21 Fill-in-the-Blank Questions ---
-    { id: 'q72', type: 'fill-in-the-blank', questionText: { ar: '........ هي مجموعة من القواعد والأصول المتعارف عليها بين أصحاب المهنة.', en: 'F-1' }, correctAnswer: 'أخلاقيات المهنة' },
-    { id: 'q73', type: 'fill-in-the-blank', questionText: { ar: 'النظرية الفطرية ترى أن الأخلاق ........ وثابتة، بينما النظرية الاكتسابية ترى أنها ........ من خلال التربية والتعليم والتجارب.', en: 'F-2' }, correctAnswer: 'فطرية، مكتسبة' },
-    { id: 'q74', type: 'fill-in-the-blank', questionText: { ar: 'الشروط اللازمة في الفعل الخلقي أن يصدر ........ ، ........ حرة.', en: 'F-3' }, correctAnswer: 'بتكرار، إرادة' },
-    { id: 'q75', type: 'fill-in-the-blank', questionText: { ar: 'المهنة تتمتع بوضع ........ و ........ أعلى من الوظيفة.', en: 'F-4' }, correctAnswer: 'اجتماعي، اقتصادي' },
-    { id: 'q76', type: 'fill-in-the-blank', questionText: { ar: 'من مبادئ أخلاقيات المهنة ........ و ........', en: 'F-5' }, correctAnswer: 'المعاملة الحسنة، الاستقامة' },
-    { id: 'q77', type: 'fill-in-the-blank', questionText: { ar: 'من مصادر أخلاقيات المهنة المصدر ........ و ........ و ........', en: 'F-6' }, correctAnswer: 'الديني، الاجتماعي، السياسي' },
-    { id: 'q78', type: 'fill-in-the-blank', questionText: { ar: 'تستند أخلاقيات المهنة علي جملة من ........ و ........ الأساسية.', en: 'F-7' }, correctAnswer: 'المبادئ، المرتكزات' },
-    { id: 'q79', type: 'fill-in-the-blank', questionText: { ar: 'من وسائل ترسيخ أخلاقيات المهنة ........ و ........', en: 'F-8' }, correctAnswer: 'القدوة الحسنة، تنمية الرقابة الذاتية' },
-    { id: 'q80', type: 'fill-in-the-blank', questionText: { ar: 'تشمل تحديات أخلاقيات المهنة تحديات ........ و ........', en: 'F-9' }, correctAnswer: 'داخلية، خارجية' },
-    { id: 'q81', type: 'fill-in-the-blank', questionText: { ar: 'تعد مهنة التعليم من أسمى المهن لأنها ........', en: 'F-10' }, correctAnswer: 'تغرس القيم الأخلاقية' },
-    { id: 'q82', type: 'fill-in-the-blank', questionText: { ar: 'من القيم الأخلاقية التي يجب أن يتحلى بها المعلم ........', en: 'F-11' }, correctAnswer: 'الصدق والأمانة' },
-    { id: 'q83', type: 'fill-in-the-blank', questionText: { ar: 'دور المعلم في الصف لا يقتصر على التعليم بل يشمل ........', en: 'F-12' }, correctAnswer: 'التربية وغرس القيم' },
-    { id: 'q84', type: 'fill-in-the-blank', questionText: { ar: 'احترام خصوصية الطالب من مظاهر ........', en: 'F-13' }, correctAnswer: 'الأمانة المهنية' },
-    { id: 'q85', type: 'fill-in-the-blank', questionText: { ar: 'يجب أن يكون المعلم ........ في أدائه وسلوكه.', en: 'F-14' }, correctAnswer: 'قدوة' },
-    { id: 'q86', type: 'fill-in-the-blank', questionText: { ar: 'النزاهة في التعليم تعني أداء العمل بصدق ........', en: 'F-15' }, correctAnswer: 'دون تحيز أو غش' },
-    { id: 'q87', type: 'fill-in-the-blank', questionText: { ar: 'البيئة الصفية الأخلاقية تقوم على ........ و ........', en: 'F-16' }, correctAnswer: 'الاحترام - الثقة المتبادلة' },
-    { id: 'q88', type: 'fill-in-the-blank', questionText: { ar: '........ هي مجموعة القيم والمبادئ التي توجه سلوك المديرين والعاملين في المؤسسات التعليمية، وتضمن أداء المهام بروح العدالة والنزاهة والمسؤولية.', en: 'F-17' }, correctAnswer: 'أخلاقيات الإدارة التعليمية' },
-    { id: 'q89', type: 'fill-in-the-blank', questionText: { ar: '........ هي أن يكون المدير والمعلم نموذجا يحتذى به في السلوك، والالتزام والاحترام والانضباط المهني داخل المدرسة.', en: 'F-18' }, correctAnswer: 'القدوة الحسنة' },
-    { id: 'q90', type: 'fill-in-the-blank', questionText: { ar: '........ هي معاملة الطلاب أو الزملاء بطريقة غير عادلة على أساس الجنس أو الدين أو الأصل أو الحالة الاجتماعية.', en: 'F-19' }, correctAnswer: 'التمييز والتحيز' },
-    { id: 'q91', type: 'fill-in-the-blank', questionText: { ar: '........ سلوك غير لائق كالتدخين أو التمييز ضد الطلاب.', en: 'F-20' }, correctAnswer: 'المخالفة الأخلاقية' },
-    { id: 'q92', type: 'fill-in-the-blank', questionText: { ar: 'تصرفات المعلم التي تعكس التزامه بالقيم المهنية ........', en: 'F-21' }, correctAnswer: 'السلوك المهني' }
+export const ETHICS_FILL_EXAM: Exam = {
+  id: 'ethics_essay_202',
+  subjectId: 'ethics',
+  title: { ar: 'مقالي اخلاقيات المهنه', en: 'Professional Ethics Essay/Fill' },
+  active: true,
+  thumbnail: '📝',
+  questions: [
+    { id: 'ef1', type: 'fill-in-the-blank', questionText: { ar: '........ هي مجموعة من القواعد والأصول المتعارف عليها بين أصحاب المهنة.', en: 'F1' }, correctAnswer: 'أخلاقيات المهنة' },
+    { id: 'ef2', type: 'fill-in-the-blank', questionText: { ar: 'النظرية الفطرية ترى أن الأخلاق ........ وثابتة، بينما النظرية الاكتسابية ترى أنها ........ من خلال التربية والتعليم والتجارب.', en: 'F2' }, correctAnswer: 'فطرية، مكتسبة' },
+    { id: 'ef3', type: 'fill-in-the-blank', questionText: { ar: 'الشروط اللازمة في الفعل الخلقي أن يصدر ........ ، ........ حرة.', en: 'F3' }, correctAnswer: 'بتكرار، إرادة' },
+    { id: 'ef4', type: 'fill-in-the-blank', questionText: { ar: 'المهنة تتمتع بوضع ........ و ........ أعلى من الوظيفة.', en: 'F4' }, correctAnswer: 'اجتماعي، اقتصادي' },
+    { id: 'ef5', type: 'fill-in-the-blank', questionText: { ar: 'من مبادئ أخلاقيات المهنة ........ و ........', en: 'F5' }, correctAnswer: 'المعاملة الحسنة، الاستقامة' },
+    { id: 'ef6', type: 'fill-in-the-blank', questionText: { ar: 'من مصادر أخلاقيات المهنة المصدر ........ و ........ و ........', en: 'F6' }, correctAnswer: 'الديني، الاجتماعي، السياسي' },
+    { id: 'ef7', type: 'fill-in-the-blank', questionText: { ar: '........ تستند أخلاقيات المهنة علي جملة من ........ و .', en: 'F7' }, correctAnswer: ' المبادئ، المرتكزات الاساسيه' },
+    { id: 'ef8', type: 'fill-in-the-blank', questionText: { ar: 'من وسائل ترسيخ أخلاقيات المهنة ........ و ........', en: 'F8' }, correctAnswer: 'القدوة الحسنة، تنمية الرقابة الذاتية' },
+    { id: 'ef9', type: 'fill-in-the-blank', questionText: { ar: 'تشمل تحديات أخلاقيات المهنة تحديات ........ و ........', en: 'F9' }, correctAnswer: 'داخلية، خارجية' },
+    { id: 'ef10', type: 'fill-in-the-blank', questionText: { ar: 'تعد مهنة التعليم من أسمى المهن لأنها ........', en: 'F10' }, correctAnswer: 'تغرس القيم الأخلاقية' },
+    { id: 'ef11', type: 'fill-in-the-blank', questionText: { ar: 'من القيم الأخلاقية التي يجب أن يتحلى بها المعلم ........', en: 'F11' }, correctAnswer: 'الصدق والأمانة' },
+    { id: 'ef12', type: 'fill-in-the-blank', questionText: { ar: 'دور المعلم في الصف لا يقتصر على التعليم بل يشمل ........', en: 'F12' }, correctAnswer: 'التربية وغرس القيم' },
+    { id: 'ef13', type: 'fill-in-the-blank', questionText: { ar: 'احترام خصوصية الطالب من مظاهر ........', en: 'F13' }, correctAnswer: 'الأمانة المهنية' },
+    { id: 'ef14', type: 'fill-in-the-blank', questionText: { ar: 'يجب أن يكون المعلم ........ في أدائه وسلوكه.', en: 'F14' }, correctAnswer: 'قدوة' },
+    { id: 'ef15', type: 'fill-in-the-blank', questionText: { ar: 'النزاهة في التعليم تعني أداء العمل بصدق ........', en: 'F15' }, correctAnswer: 'دون تحيز أو غش' },
+    { id: 'ef16', type: 'fill-in-the-blank', questionText: { ar: 'البيئة الصفية الأخلاقية تقوم على ........ و ........', en: 'F16' }, correctAnswer: 'الاحترام - الثقة المتبادلة' },
+    { id: 'ef17', type: 'fill-in-the-blank', questionText: { ar: '........ هي مجموعة القيم والمبادئ التي توجه سلوك المديرين والعاملين في المؤسسات التعليمية، وتضمن أداء المهام بروح العدالة والنزاهة والمسؤولية.', en: 'F17' }, correctAnswer: 'أخلاقيات الإدارة التعليمية' },
+    { id: 'ef18', type: 'fill-in-the-blank', questionText: { ar: '........ هي أن يكون المدير والمعلم نموذجا يحتذى به في السلوك، والالتزام والاحترام والانضباط المهني داخل المدرسة.', en: 'F18' }, correctAnswer: 'القدوة الحسنة' },
+    { id: 'ef19', type: 'fill-in-the-blank', questionText: { ar: '........ هي معاملة الطلاب أو الزملاء بطريقة غير عادلة على أساس الجنس أو الدين أو الأصل أو الحالة الاجتماعية.', en: 'F19' }, correctAnswer: 'التمييز والتحيز' },
+    { id: 'ef20', type: 'fill-in-the-blank', questionText: { ar: '........ سلوك غير لائق كالتدخين أو التمييز ضد الطلاب.', en: 'F20' }, correctAnswer: 'المخالفة الأخلاقية' },
+    { id: 'ef21', type: 'fill-in-the-blank', questionText: { ar: 'تصرفات المعلم التي تعكس التزامه بالقيم المهنية ........', en: 'F21' }, correctAnswer: 'السلوك المهني' }
   ]
 };
 
 export const TRANSLATIONS = {
   ar: {
     dashboard: 'الرئيسية',
-    startExam: 'ابدأ الامتحان الشامل',
-    totalExams: 'إجمالي الاختبارات',
-    accuracy: 'معدل الدقة',
-    progress: 'نسبة التقدم',
-    lastScore: 'آخر درجة',
-    noExams: 'لا توجد اختبارات متاحة',
-    next: 'السؤال التالي',
-    previous: 'السؤال السابق',
-    submit: 'إنهاء الاختبار',
-    backToHome: 'العودة للرئيسية',
-    score: 'درجتك النهائية',
-    timeSpent: 'الوقت',
-    correctAnswers: 'إجابات صحيحة',
-    wrongAnswers: 'إجابات خاطئة',
-    review: 'مراجعة الأسئلة',
-    checking: 'يتم التصحيح بالذكاء الاصطناعي...',
-    check: 'تحقق من صحة الإجابة',
-    yourAnswer: 'إجابتك',
-    correctAnswer: 'الإجابة الصحيحة',
+    startExam: 'ابدأ الامتحان',
+    score: 'الدرجة',
     langToggle: 'English',
     admin_login: 'دخول المسؤول',
     username: 'اسم المستخدم',
@@ -139,65 +131,14 @@ export const TRANSLATIONS = {
     login_btn: 'دخول',
     cancel: 'إلغاء',
     invalid_creds: 'بيانات خاطئة',
-    admin_control: 'لوحة التحكم للمسؤول',
-    exit_admin: 'خروج من الإدارة',
-    upload_success: 'تم الحفظ بنجاح',
-    preparing: 'جاري التحضير...',
-    admin_badge: 'إدارة',
-    exam_builder: 'بناء اختبار جديد',
-    exam_info: 'بيانات الاختبار',
-    exam_title: 'عنوان الاختبار',
-    select_subject: 'اختر المادة',
-    add_question: 'إضافة سؤال',
-    question_text: 'نص السؤال',
-    question_type: 'نوع السؤال',
-    options_label: 'خيارات الإجابة',
-    add_option: 'إضافة خيار',
-    save_exam: 'حفظ الاختبار ونشره',
-    mcq: 'اختياري',
-    tf: 'صح/خطأ',
-    fill: 'مقالي/أكمل',
-    import_file: 'استيراد من ملف',
-    no_questions: 'لا توجد أسئلة',
-    active_exams: 'الاختبارات النشطة',
-    hidden_exams: 'المخفية',
-    upload_image: 'صورة مصغرة',
-    saved_questions: 'المواد والملفات',
-    folders: 'موادي التعليمية',
-    create_folder: 'إنشاء مادة جديدة',
-    folder_name: 'اسم المادة (مثلاً: ريادة أعمال)',
-    save_folder: 'حفظ المادة',
-    practice_folder: 'بدء تدريب شامل',
-    download_pdf: 'تحميل كـ PDF',
-    save_to_folder: 'حفظ في ملف',
-    bulk_save_wrong: 'حفظ الأخطاء لمراجعتها',
-    review_folder: 'مراجعة الأخطاء',
-    no_folders: 'لا توجد مواد مضافة بعد',
-    delete_folder: 'حذف المجلد',
-    edit_folder: 'تعديل',
-    fav_questions: 'سؤال محفوظ'
+    checking: 'جاري التحقق...',
+    correctAnswer: 'الإجابة الصحيحة',
+    saved_questions: 'المواد والملفات'
   },
   en: {
     dashboard: 'Dashboard',
-    startExam: 'Start Final Exam',
-    totalExams: 'Total Exams',
-    accuracy: 'Accuracy',
-    progress: 'Progress',
-    lastScore: 'Last Score',
-    noExams: 'No exams available',
-    next: 'Next Question',
-    previous: 'Previous',
-    submit: 'Finish',
-    backToHome: 'Back Home',
-    score: 'Final Score',
-    timeSpent: 'Time',
-    correctAnswers: 'Correct',
-    wrongAnswers: 'Wrong',
-    review: 'Review',
-    checking: 'Correcting by AI...',
-    check: 'Check Answer',
-    yourAnswer: 'Your Answer',
-    correctAnswer: 'Correct Answer',
+    startExam: 'Start Exam',
+    score: 'Score',
     langToggle: 'العربية',
     admin_login: 'Admin Login',
     username: 'Username',
@@ -205,42 +146,8 @@ export const TRANSLATIONS = {
     login_btn: 'Login',
     cancel: 'Cancel',
     invalid_creds: 'Invalid',
-    admin_control: 'Admin Control',
-    exit_admin: 'Exit Admin',
-    upload_success: 'Saved successfully',
-    preparing: 'Preparing...',
-    admin_badge: 'ADMIN',
-    exam_builder: 'New Exam Builder',
-    exam_info: 'Exam Info',
-    exam_title: 'Exam Title',
-    select_subject: 'Select Subject',
-    add_question: 'Add Question',
-    question_text: 'Question Text',
-    question_type: 'Type',
-    options_label: 'Options',
-    add_option: 'Add Option',
-    save_exam: 'Save & Publish',
-    mcq: 'MCQ',
-    tf: 'T/F',
-    fill: 'Fill in Blank',
-    import_file: 'Import',
-    no_questions: 'No questions',
-    active_exams: 'Active',
-    hidden_exams: 'Hidden',
-    upload_image: 'Thumbnail',
-    saved_questions: 'My Files',
-    folders: 'Folders',
-    create_folder: 'Create New Subject',
-    folder_name: 'Subject Name',
-    save_folder: 'Save Folder',
-    practice_folder: 'Start Practice',
-    download_pdf: 'Download PDF',
-    save_to_folder: 'Save to File',
-    bulk_save_wrong: 'Save Mistakes',
-    review_folder: 'Review Mistakes',
-    no_folders: 'No folders added',
-    delete_folder: 'Delete',
-    edit_folder: 'Edit',
-    fav_questions: 'Saved Questions'
+    checking: 'Checking...',
+    correctAnswer: 'Correct Answer',
+    saved_questions: 'My Files'
   }
 };

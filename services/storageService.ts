@@ -1,6 +1,6 @@
 
 import { UserStats, ExamResult, Question, Subject, Exam, SavedFolder, ExamSession } from '../types';
-import { ETHICS_EXAM } from '../constants';
+import { ETHICS_EXAM, ETHICS_FILL_EXAM } from '../constants';
 
 const STATS_KEY = 'ai_exam_user_stats_v2';
 const RESULTS_KEY = 'ai_exam_results_v2';
@@ -22,7 +22,8 @@ export const storageService = {
   getCustomExams: (): Exam[] => {
     const saved = localStorage.getItem(CUSTOM_EXAMS_KEY);
     const exams = saved ? JSON.parse(saved) : [];
-    return exams.length === 0 ? [ETHICS_EXAM] : exams;
+    // Return both requested exams if nothing is saved
+    return exams.length === 0 ? [ETHICS_EXAM, ETHICS_FILL_EXAM] : exams;
   },
 
   addExam: (exam: Exam) => {
@@ -119,31 +120,22 @@ export const storageService = {
     const stats = storageService.getStats();
     const date = Date.now();
     
-    // Update global counts
     stats.examsTaken += 1;
     stats.totalQuestionsAnswered += result.answers.length;
-    
     const correctInThisExam = result.answers.filter(a => a.isCorrect).length;
     stats.correctAnswers += correctInThisExam;
-    
-    // Calculate overall accuracy
     stats.accuracyRate = Math.round((stats.correctAnswers / stats.totalQuestionsAnswered) * 100);
     
-    // Track History
     stats.history.push({
       subjectId: result.subjectId,
       score: result.score,
       date
     });
 
-    // Track Mistakes
     result.answers.forEach(ans => {
       if (!ans.isCorrect) {
         if (!stats.mistakesTracker[ans.questionId]) {
-          stats.mistakesTracker[ans.questionId] = { 
-            count: 1, 
-            question: ans.questionData 
-          };
+          stats.mistakesTracker[ans.questionId] = { count: 1, question: ans.questionData };
         } else {
           stats.mistakesTracker[ans.questionId].count += 1;
         }
@@ -151,7 +143,6 @@ export const storageService = {
     });
 
     localStorage.setItem(STATS_KEY, JSON.stringify(stats));
-    
     const results = storageService.getAllResults();
     results.push({ ...result, date });
     localStorage.setItem(RESULTS_KEY, JSON.stringify(results));
